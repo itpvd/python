@@ -7,16 +7,12 @@
      <div class="container">
       <div class="well">
         <div class="media">
-          {%for post in result.items%}
-         <a class="pull-left" href="/detailPost?id={{post['id']}}">
-          <img class="media-object" src="http://placekitten.com/150/150" width="100" height="100">
-        </a>
         <div class="media-body">
-          <h4 class="media-heading">{{post['title']}}</h4>
+          <h4 class="media-heading">{{result['title']}}</h4>
           <p class="text-right">By Admin</p>
-          <p>detail....</p>
+          <p>{{result['content']}}</p>
           <ul class="list-inline list-unstyled">
-           <li><span><i class="glyphicon glyphicon-calendar"></i> {{post['date_posted']}} </span></li>
+           <li><span><i class="glyphicon glyphicon-calendar"></i> {{result['date_posted']}} </span></li>
            <li>|</li>
            <li>|</li>
            <li>
@@ -36,20 +32,9 @@
         </ul>
 
       </div>
-       {%endfor%}
     </div>
 
   </div>
 </div>
 </div>
-<center>
-{% for page_num in result.iter_pages() %}
-      {% if page_num %}
-          <a class="btn btn-outline-info mb-4" href="{{ url_for('viewPost', page=page_num) }}">{{ page_num }}</a>
-      {% else %}
-        ...
-      {% endif %}
-    {% endfor %}
-</center>
 {%endblock%}
-

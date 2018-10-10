@@ -1,37 +1,29 @@
 {% extends "admin.html" %}
 {%block content%}
 <div class="panel-heading">
-        Update User
+ Add Post
 </div>
 <div class="container">
-<h1 class="form-heading">Register Form</h1>
-<div class="login-form">
-<div class="main-div">
-    <div class="panel">
-   </div>
-    <form id="Login" method="POST" action="/checkadduser">
-
-
+  <h1 class="form-heading">Post</h1>
+  <div class="login-form">
+    <div class="main-div">
+      <div class="panel">
+        <form method="POST" action="/updateUser">
+         <div class="form-group" >
+          <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" value="{{user['username']}}">
+        </div>
         <div class="form-group">
-          {{ form.username(class="form-control",value=id) }}
-          
+          <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password" value="{{user['password']}}">
         </div>
-
         <div class="form-group">
-      {{ form.password(class="form-control",placeholder="Password") }}
-
+          Role:
+          <input type="radio" name="role" id="option1" value="admin" checked="{user['username']=='admin'}}"> admin </input>
+          <input type="radio" name="role" id="option2" value="user" checked="{{user['username']=='user'}}"> user </input><br>
         </div>
-         <div class="form-group">
-      {{ form.confilmpass(class="form-control",placeholder="confilm password") }}
-
-        </div>
-        <div class="forgot">
-    
-    {{ form.submit(type="submit",class="btn btn-primary") }}
-       
-
-    </form>
+        <input type="hidden"  name="id" value="{{user['id']}}">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-</div></div></div>
-
+  </div>
+</div>
 {% endblock %}
