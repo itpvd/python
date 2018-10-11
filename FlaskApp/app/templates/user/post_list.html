@@ -1,0 +1,76 @@
+{% extends "user.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>John's Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Home</a></li>
+        <li><a href="#section2">Friends</a></li>
+        <li><a href="#section3">Family</a></li>
+        <li><a href="#section3">Photos</a></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {%for post in result.items%}
+      <div class="row">
+        <div class="span8">
+          <div class="row">
+            <div class="span8">
+              <h4><strong><a href="#">{{post['title']}}</a></strong></h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="/detailPost?id={{post['id']}}" class="thumbnail">
+                <img src="http://placekitten.com/150/150" width="100" height="150">
+              </a>
+            </div>
+            <div class="span6">      
+              <p>
+                {{post['content']}}
+              </p>
+              <p><a class="btn" href="#">Read more</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p></p>
+              <p>
+                <i class="icon-user"></i> by <a href="#">John</a> 
+                | <i class="icon-calendar"></i> {{post['date_posted']}}
+                | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                | <i class="icon-share"></i> <a href="#">39 Shares</a>
+                | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                <a href="#"><span class="label label-info">Bootstrap</span></a> 
+                <a href="#"><span class="label label-info">UI</span></a> 
+                <a href="#"><span class="label label-info">growth</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+     {%endfor%}
+    </div>
+  </div>
+  <center>
+    {% for page_num in result.iter_pages() %}
+    {% if page_num %}
+    <a class="btn btn-outline-info mb-4" href="{{ url_for('viewPost', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+  </center>
+  {%endblock%}
