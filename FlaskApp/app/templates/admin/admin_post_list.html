@@ -1,16 +1,16 @@
 {% extends "admin.html" %}
 {% block content %}
 <div class="panel-heading">
- List Post
+   List Post
 </div>
 <div class="container">
     <div class="row col-md-6 col-md-offset-2 custyle">
         <table class="table table-striped custab">
             <thead>
                 <a href="/formAddPost" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new post</a>
-             {%if allrecord.__len__()==0%}
-             There are no posts. Please add a new post!
-             {%else%}
+                {%if allrecord.__len__()==0%}
+                There are no posts. Please add a new post!
+                {%else%}
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
@@ -22,7 +22,7 @@
             <tr>
                 <td>{{post['id']}}</td>
                 <td>{{post['title']}}</td>
-                <td>{{post['date_posted']}}</td>
+                <td>{{post['date_posted'].strftime("%c")}}</td>
                 <td class="text-center"><a class='btn btn-info btn-xs' href="/formEditPost?id={{post['id']}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/deletePost?id={{post['id']}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
             </tr>
             {%endfor%}

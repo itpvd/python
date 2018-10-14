@@ -14,4 +14,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
-from app.controllers import controllers
+from app.controllers import main_controllers,post_controllers,user_controllers

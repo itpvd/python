@@ -1,0 +1,72 @@
+from flask_sqlalchemy import SQLAlchemy
+from app import db, login_manager
+from flask_login import UserMixin
+
+@login_manager.user_loader
+def load_user(user_id):
+	return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    password = db.Column(db.String(128))
+    role = db.Column(db.String(10))
+    def __init__(self,username,password,role):
+        self.username = username
+        self.password = password
+        self.role = role
+    #query list all user
+    def listAllUser():
+        list = User.query.all()
+        return list
+    # number user per page pagination
+    def numberUserPerPage(pages,number):
+        result = User.query.paginate(page=pages, per_page=number)
+        return result
+    #find user by id = idUser
+    def findUserById(idUser):
+        user = User.query.filter_by(id=idUser).first()
+        return user
+    #find user by username = name
+    def findUserByName(name):
+        user = User.query.filter_by(username=name).first()
+        return user
+    #create new user
+    def createUser(user):
+        db.session.add(user)
+        db.session.commit()
+    #delete user where id = idUser
+    def deleteUser(idUser):
+        User.query.filter_by(id=idUser).delete()
+        db.session.commit()
+    #update user
+    def updateUser(idUser,userUpdate):
+        user= User.query.filter_by(id=idUser).first()
+        user.username = userUpdate.username
+        user.password = userUpdate.password
+        user.role = userUpdate.role
+        db.session.commit()
+    #function check user exists
+    def userExists(name):
+        user = User.findUserByName(name)
+        if user:
+            return True
+        else:
+            return False
+    #function check pass 
+    def checkLenPass(password):
+        if password.__len__()>8 and password.isalpha() ==False and password.isnumeric()==False and password.islower()==False:
+            return True
+        else:
+            return False
+    #furnction alert register user:
+    def alertRegister(username,password,passwordcf):
+        alert=''
+        if User.userExists(username):
+            alert='Username already exists,please create another username'
+        elif password!=passwordcf:
+            alert='Password must match with password confirm'
+        else:
+            alert='Password of at least 8 characters, including char and numbers, at least 1 capital letter'
+        return alert
+
