@@ -7,7 +7,7 @@ from flask_login import login_user,logout_user,current_user
 #show list all post
 @app.route("/listPost")
 def listPost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           allrecord = Post.listAllPost()
@@ -17,7 +17,7 @@ def listPost():
 #delete post
 @app.route("/deletePost", methods=['GET'])
 def deletePost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           id = request.args['id']
@@ -26,14 +26,14 @@ def deletePost():
 #show form add post
 @app.route("/formAddPost")
 def formAddPost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           return render_template('admin/admin_post_add.html')
 #create new post
 @app.route("/addPost", methods=['POST'])
 def addPost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           result = request.form
@@ -46,7 +46,7 @@ def addPost():
 #show form edit post
 @app.route("/formEditPost",methods=['GET'])
 def formEditPost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           id = request.args['id']
@@ -55,7 +55,7 @@ def formEditPost():
 #update post in database
 @app.route("/updatePost",methods=['POST'])
 def updatePost():
-      if current_user.is_authenticated==False:
+      if current_user.is_authenticated==False or current_user.role!='admin':
           return redirect('formLogin')
       else:
           result = request.form

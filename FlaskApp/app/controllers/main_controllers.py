@@ -37,7 +37,7 @@ def checkRegister():
       result = request.form
       user = User.findUserByName(result['username'])
       if result['password']== result['confilmpass'] and not user  and User.checkLenPass(result['password']):
-            user = User(result['username'],result['password'],'user')
+            user = User(result['username'],result['password'],result['email'],result['gender'],result['birthday'],result['phone'],'user')
             User.createUser(user)
             flash('Account: %s created successfully'%result['username'])
             return render_template("user/register.html")

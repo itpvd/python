@@ -28,16 +28,53 @@
          <h2>REGISTER</h2>
          <p>Please enter your username and password</p>
        </div>
-       <form id="Login"  method="POST" action="/checkRegister">
+       <form id="Register"  method="POST" action="/checkRegister">
         <div class="form-group" >
-          <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username">
+          <input type="text" class="form-control" id="inputText" placeholder="Username" name="username"
+          required
+                data-bv-notempty-message="The username is required">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
+          required
+                data-bv-notempty-message="The password is required">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="confilmpass">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="confilmpass"
+          required
+                data-bv-notempty-message="The password is required">
         </div>
+        <div class="form-group">
+          <input type="email" class="form-control"  placeholder="Email" name="email"
+          required
+                data-bv-notempty-message="The email is required">
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-3">
+              <label> Gender:</label>
+            </div>
+            <div class="col-6">
+              <input type="radio" name="gender" id="option1" value="male" checked> male </input>
+              <input type="radio" name="gender" id="option2" value="female"> female </input><br>
+            </div>
+          </div>
+        </div>
+         <div class="form-group">
+          <input type="text" class="form-control" placeholder="Phone number" name="phone"
+          required
+                data-bv-notempty-message="The phone is required">
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-3">
+              <label> Birthday: </label>
+            </div>
+          </div> 
+          <input type="date" class="form-control" name="birthday"
+          required
+                data-bv-notempty-message="The date is required">
+        </div>      
         <div class="forgot">
          <a href="{{url_for('formLogin')}}">Do you want login?</a>
        </div>
@@ -46,5 +83,10 @@
    </div>
  </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#Register').bootstrapValidator();
+});
+</script>
 </body>
 </html>

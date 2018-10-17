@@ -11,18 +11,40 @@
       </div>
       <form id="Login" method="POST" action="/addUser">
         <div class="form-group" >
-          <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username">
+          <input type="text" class="form-control" placeholder="Username" name="username"
+          required
+                data-bv-notempty-message="The username is required">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" name="password"
+          required
+                data-bv-notempty-message="The password is required">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="confilmpass">
+          <input type="email" class="form-control"  placeholder="Email" name="email"
+          required
+                data-bv-notempty-message="The email is required">
+        </div>
+         <div class="form-group">
+          Gender:
+          <input type="radio" name="gender" id="option1" value="male" checked="true"> male </input>
+          <input type="radio" name="gender" id="option2" value="female"> female </input><br>
+        </div>
+       <div class="form-group">
+        Birthday: 
+          <input type="date" class="form-control" name="birthday" 
+          required
+                data-bv-notempty-message="The date is required">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Phone number" name="phone"
+          required
+                data-bv-notempty-message="The phone is required">
         </div>
         <div class="form-group">
           Role:
           <input type="radio" name="role" id="option1" value="admin"> admin </input>
-          <input type="radio" name="role" id="option2" value="user"> user </input><br>
+          <input type="radio" name="role" id="option2" value="user" checked> user </input><br>
         </div>
         <div class="forgot">
           <button type="submit" class="btn btn-primary">Create user</button>
@@ -31,4 +53,9 @@
     </div>
   </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#Login').bootstrapValidator();
+});
+</script>
 {% endblock %}

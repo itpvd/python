@@ -16,6 +16,21 @@
           <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password" value="{{user['password']}}">
         </div>
         <div class="form-group">
+          <input type="email" class="form-control"  placeholder="Email" name="email" value="{{user['email']}}">
+        </div>
+         <div class="form-group">
+          Gender:
+          <input type="radio" name="gender" id="option1" value="male" checked> male </input>
+          <input type="radio" name="gender" id="option2" value="female"> female </input><br>
+        </div>
+       <div class="form-group">
+        Birthday: 
+          <input type="date" class="form-control" name="birthday"  value="{{user['birthday'].strftime('%Y-%m-%d')}}">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Phone number" name="phone" value="{{user['phone']}}">
+        </div>
+        <div class="form-group">
           Role:
           <input type="radio" name="role" id="option1" value="admin" checked="{user['username']=='admin'}}"> admin </input>
           <input type="radio" name="role" id="option2" value="user" checked="{{user['username']=='user'}}"> user </input><br>

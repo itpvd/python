@@ -10,10 +10,18 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     password = db.Column(db.String(128))
+    email = db.Column(db.String(128))
+    gender = db.Column(db.String(128))
+    birthday =db.Column(db.DateTime)
+    phone = db.Column(db.String(128))
     role = db.Column(db.String(10))
-    def __init__(self,username,password,role):
+    def __init__(self,username,password,email,gender,birthday,phone,role):
         self.username = username
         self.password = password
+        self.email = email
+        self.gender = gender
+        self.birthday = birthday
+        self.phone = phone
         self.role = role
     #query list all user
     def listAllUser():
@@ -31,6 +39,10 @@ class User(db.Model, UserMixin):
     def findUserByName(name):
         user = User.query.filter_by(username=name).first()
         return user
+     #find user by username = name
+    def findUserByEmail(mail):
+        user = User.query.filter_by(email=mail).first()
+        return user
     #create new user
     def createUser(user):
         db.session.add(user)
@@ -45,6 +57,10 @@ class User(db.Model, UserMixin):
         user.username = userUpdate.username
         user.password = userUpdate.password
         user.role = userUpdate.role
+        user.email = userUpdate.email
+        user.gender = userUpdate.gender
+        user.phone= userUpdate.phone
+        user.birthday = userUpdate.birthday
         db.session.commit()
     #function check user exists
     def userExists(name):

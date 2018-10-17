@@ -38,15 +38,15 @@
               <p>
                 {{post['content']}}
               </p>
-              <p><a class="btn" href="#">Read more</a></p>
+              <p><a class="btn" href="/detailPost?id={{post['id']}}">Read more</a></p>
             </div>
           </div>
           <div class="row">
             <div class="span8">
               <p></p>
               <p>
-                <i class="icon-user"></i> by <a href="#">John</a> 
-                | <i class="icon-calendar"></i> {{post['date_posted']}}
+                <i class="icon-user"></i> by <a href="#">Admin</a> 
+                | <i class="icon-calendar"></i> {{post['date_posted'].strftime("%c")}}
                 | <i class="icon-comment"></i> <a href="#">3 Comments</a>
                 | <i class="icon-share"></i> <a href="#">39 Shares</a>
                 | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
