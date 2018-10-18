@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
         self.birthday = birthday
         self.phone = phone
         self.role = role
+        
     #query list all user
     def listAllUser():
         list = User.query.all()
@@ -54,7 +55,6 @@ class User(db.Model, UserMixin):
     #update user
     def updateUser(idUser,userUpdate):
         user= User.query.filter_by(id=idUser).first()
-        user.username = userUpdate.username
         user.password = userUpdate.password
         user.role = userUpdate.role
         user.email = userUpdate.email
@@ -85,4 +85,14 @@ class User(db.Model, UserMixin):
         else:
             alert='Password of at least 8 characters, including char and numbers, at least 1 capital letter'
         return alert
-
+    #furnction alert change password:
+    def alertChangePassword(password,oldpassword,newpassword,passwordcf):
+        alert=''
+        if password!=oldpassword:
+            alert='Old password invalid'
+        elif password!=passwordcf:
+            alert='New password must match with password confirm'
+        else:
+            alert='Password of at least 8 characters, including char and numbers, at least 1 capital letter'
+        return alert
+   

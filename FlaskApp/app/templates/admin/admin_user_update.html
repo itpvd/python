@@ -4,39 +4,68 @@
  Update User
 </div>
 <div class="container">
-  <h1 class="form-heading">user</h1>
+  <center>
+  <h1 class="form-heading">Update user</h1>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li><b>{{ message }}!</b></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  </center>
   <div class="login-form">
     <div class="main-div">
       <div class="panel">
         <form method="POST" action="/updateUser">
          <div class="form-group" >
-          <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" value="{{user['username']}}">
+          <label >User name:</label>
+          <input type="text" class="form-control" placeholder="Username" name="name" disabled="true" value="{{user['username']}}" required>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password" value="{{user['password']}}">
+          <label >Password:</label>
+          <input type="text" class="form-control" placeholder="Password" name="password" value="{{user['password']}}" required>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control"  placeholder="Email" name="email" value="{{user['email']}}">
+          <label >Email:</label>
+          <input type="email" class="form-control"  placeholder="Email" name="email" value="{{user['email']}}" required>
         </div>
-         <div class="form-group">
-          Gender:
+        <div class="form-group">
+          <label >Gender:</label>
+          {%if user['gender']=='male'%}
           <input type="radio" name="gender" id="option1" value="male" checked> male </input>
           <input type="radio" name="gender" id="option2" value="female"> female </input><br>
-        </div>
-       <div class="form-group">
-        Birthday: 
-          <input type="date" class="form-control" name="birthday"  value="{{user['birthday'].strftime('%Y-%m-%d')}}">
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Phone number" name="phone" value="{{user['phone']}}">
+          {%else%}
+          <input type="radio" name="gender" id="option1" value="male" > male </input>
+          <input type="radio" name="gender" id="option2" value="female" checked> female </input><br>
+          {%endif%}
         </div>
         <div class="form-group">
-          Role:
-          <input type="radio" name="role" id="option1" value="admin" checked="{user['username']=='admin'}}"> admin </input>
-          <input type="radio" name="role" id="option2" value="user" checked="{{user['username']=='user'}}"> user </input><br>
+          <label >Birthday:</label>
+          <input type="date" class="form-control" name="birthday"  value="{{user['birthday'].strftime('%Y-%m-%d')}}" required>
         </div>
-        <input type="hidden"  name="id" value="{{user['id']}}">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label >Phone:</label>
+          <input type="text" class="form-control" placeholder="Phone number" name="phone" value="{{user['phone']}}" pattern="[0-9]{5,15}" title="Phone should only contain number, from 1 t0 15 number" required>
+        </div>
+        <div class="form-group">
+          <label >Role:</label>
+          {%if user['role']=='admin'%}
+          <input type="radio" name="role" id="option1" value="admin" checked> admin </input>
+          <input type="radio" name="role" id="option2" value="user"> user </input><br>
+          {%else%}
+          <input type="radio" name="role" id="option1" value="admin"> admin </input>
+          <input type="radio" name="role" id="option2" value="user" checked> user </input><br>
+          {%endif%}
+        </div>
+        <center>
+          <input type="hidden"  name="id" value="{{user['id']}}">
+          <input type="hidden" class="form-control" placeholder="Username" name="username" value="{{user['username']}}" required>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="/listUser"><button type="button" class="btn btn-danger">Cancel</button></a><br>
+        </center>
       </form>
     </div>
   </div>

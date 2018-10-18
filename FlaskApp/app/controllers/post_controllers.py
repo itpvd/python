@@ -40,7 +40,8 @@ def addPost():
           if result['title']!='' and result['content']!='':
               post = Post(result['title'],result['content'])
               Post.createPost(post)
-              return redirect('listPost')
+              flash('Create new post is successful')
+              return redirect('formAddPost')
           else:
               return redirect('formAddPost')
 #show form edit post
@@ -62,7 +63,8 @@ def updatePost():
           id = result['id']
           post = Post(result['title'],result['content'])
           Post.updatePost(id,post)
-          return redirect('listPost')
+          flash('Update post is successful')
+          return redirect(url_for('formEditPost',id=id))
 
 #POST VIEW function
 #show list all post

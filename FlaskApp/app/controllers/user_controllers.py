@@ -42,8 +42,10 @@ def addUser():
           if User.userExists(result['username'])==False  and User.checkLenPass(result['password']):
                 user = User(result['username'],result['password'],result['email'],result['gender'],result['birthday'],result['phone'],result['role'])
                 User.createUser(user)
-                return redirect('listUser')
-          else:
+                flash('Create user is successfull')
+                return redirect('formAddUser')
+          else: 
+                flash(User.alertRegister(result['username'],result['password'],result['password']))
                 return redirect('formAddUser')
 #show form edit user
 @app.route("/formEditUser", methods=['GET'])
@@ -62,18 +64,21 @@ def updateUser():
       else:
           result = request.form
           id = result['id']
-          user = User(result['username'],result['password'],result['email'],result['gender'],result['birthday'],result['phone'],result['role'])
-          User.updateUser(id,user)
-          return redirect('listUser')
+          if User.checkLenPass(result['password']):
+              user = User(result['username'],result['password'],result['email'],result['gender'],result['birthday'],result['phone'],result['role'])
+              User.updateUser(id,user)
+              flash('Update user is successfull')
+              return redirect(url_for('formEditUser',id=id))
+          else:
+              flash('Password of at least 8 characters, including char and numbers, at least 1 capital letter')
+              return redirect(url_for('formEditUser',id=id))
 #show form change Password
 @app.route("/formChangePassword", methods=['GET'])
 def formChangePassword():
       if current_user.is_authenticated==False:
           return redirect('formLogin')
       else:
-          id = current_user.id
-          user = User.findUserById(id)
-          return render_template('user/change_password.html',user=user)
+          return render_template('user/change_password.html')
 #change Password
 @app.route("/changePassword",methods=['POST'])
 def changePassword():
@@ -85,10 +90,11 @@ def changePassword():
               id = current_user.id
               user = User(current_user.username,result['password'],current_user.email,current_user.gender,current_user.birthday,current_user.phone,current_user.role)
               User.updateUser(id,user)
-              return redirect('viewPost')
-          else:
+              flash('Change password successfull')
               return redirect('formChangePassword')
-
+          else:
+              flash(User.alertChangePassword(current_user.password,result['passwordold'],result['password'],result['passwordcf']))
+              return redirect('formChangePassword')
 #show form change Profile
 @app.route("/formChangeProfile", methods=['GET'])
 def formChangeProfile():
@@ -106,9 +112,10 @@ def changeProfile():
       else:
           result = request.form
           id = current_user.id
-          user = User(result['username'],current_user.password,result['email'],result['gender'],result['birthday'],result['phone'],current_user.role)
+          user = User(current_user.username,current_user.password,result['email'],result['gender'],result['birthday'],result['phone'],current_user.role)
           User.updateUser(id,user)
-          return redirect('viewPost')
+          flash('Change profile successfull')
+          return redirect('formChangeProfile')
 #show form foget password
 @app.route("/formForgetPassword", methods=['GET'])
 def formForgetPassword():
@@ -117,8 +124,8 @@ def formForgetPassword():
 @app.route("/sendEmail",methods=['POST'])
 def senEmail():
       result = request.form
-      user = User.findUserByEmail(result['email'])
-      if user and user.username==result['username']:
+      user = User.findUserByName(result['username'])
+      if user and user.email==result['email']:
             msg = Message(subject="Hello %s, Flask app reset password"%user.username,
                       sender=app.config.get("MAIL_USERNAME"),
                       recipients=["%s"%user.email],
@@ -127,5 +134,6 @@ def senEmail():
             flash('The password has been sent to your email')
             return redirect('formLogin')
       else:
+            flash('User name or email wrong')
             return redirect('formForgetPassword')
   

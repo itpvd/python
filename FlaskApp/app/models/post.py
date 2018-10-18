@@ -10,6 +10,7 @@ class Post(db.Model):
     def __init__(self,title,content):
         self.title = title
         self.content = content
+        
     #list all post
     def listAllPost():
         list = Post.query.all()

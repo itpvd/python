@@ -4,34 +4,37 @@
  Add Post
 </div>
 <div class="container">
-  <h1 class="form-heading">Post</h1>
+  <center>
+  <h1 class="form-heading">Create new post</h1>
+   {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+        {% for message in messages %}
+        <li><b>{{ message }}!</b></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+  </center>
   <div class="login-form">
     <div class="main-div">
       <div class="panel">
         <form method="POST" action="/addPost">
           <div class="form-group" >
             <label >Title:</label>
-            <input type="text" class="form-control" placeholder="Title" name="title"
-            required
-                data-bv-notempty-message="The title is required">
+            <input type="text" class="form-control" placeholder="Title" name="title" required>
           </div>
           <div class="form-group">
             <label >Content:</label>
-            <textarea class="form-control" rows="5" id="comment" name='content'
-            required
-                data-bv-notempty-message="The content is required"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name='content' required></textarea>
           </div>
           <center>
            <button type="submit" class="btn btn-primary">Submit</button>
+           <a href="/listPost"><button type="button" class="btn btn-danger">Cancel</button></a><br>
          </center>
        </form>
      </div>
    </div>
  </div>
 </div>
-<script>
-$(document).ready(function() {
-    $('#Login').bootstrapValidator();
-});
-</script>
 {% endblock %}

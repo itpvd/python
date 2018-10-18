@@ -16,16 +16,13 @@ def checkLogin():
       user = User.findUserByName(result['username'])
       if user and user.password == result['password'] and user.role=='user':
             login_user(user,remember = False)
-            flash('Hello %s! welecome to website'%result['username'])
             return redirect('viewPost')
       elif user and user.password == result['password'] and user.role=='admin':
             login_user(user,remember = False)
-            flash('Hello %s, welecome to website'%result['username'])
             return redirect('listUser')
       else:
             flash('User name or password is incorrect')
             return redirect('formLogin')
-
 #--REGISTER function--
 #form register
 @app.route("/formRegister")
