@@ -19,29 +19,28 @@
     </div>
     <div class="col-sm-8">
      <!-- Container (The Band Section) -->
-        <div class="well">
-          <div class="media">
-            <div class="media-body">
-              <h4 class="media-heading">{{result['title']}}</h4>
-              <p class="text-right">By Admin</p>
-              <p>{{result['content']}}</p>
-              <ul class="list-inline list-unstyled">
-               <li><span><i class="glyphicon glyphicon-calendar"></i> {{result['date_posted']}} </span></li>
-               <li>|</li>
-               <li>|</li>
-               <li>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-              </li>
-              <li>|</li>
-            </ul>
-          </div>
+     <div class="well">
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">{{post['title']}}</h4>
+          <p class="text-right">By Admin</p>
+          <p>{{post['content']}}</p>
+          <ul class="list-inline list-unstyled">
+           <li><span><i class="glyphicon glyphicon-calendar"></i> {{post['date_posted']}} </span></li>
+           <li>|</li>
+           <li>|</li>
+           <li>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+          </li>
+          <li>|</li>
+        </ul>
       </div>
     </div>
-
+  </div>
 </div>
 </div>
 {%endblock%}

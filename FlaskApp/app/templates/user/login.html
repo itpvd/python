@@ -28,7 +28,7 @@
          <h2><b>LOGIN</b></h2>
          <p>Please enter your email and password</p>
        </div>
-       <form id="Login"  method="POST" action="/checkLogin">
+       <form id="Login"  method="POST" action="/login">
         <div class="form-group" >
           <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" required>
         </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="forgot">
          <a href="{{url_for('formForgetPassword')}}">Foget password?</a>
-          <a href="{{url_for('formRegister')}}">   Do you want resgiter?</a>
+         <a href="{{url_for('formRegister')}}">   Do you want resgiter?</a>
        </div>
        <button type="submit" class="btn btn-primary">Login</button>
      </form>

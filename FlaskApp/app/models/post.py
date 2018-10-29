@@ -24,16 +24,16 @@ class Post(db.Model):
         post = Post.query.filter_by(id=idPost).first()
         return post
     #create new post
-    def createPost(post):
-        db.session.add(post)
+    def createPost(self):
+        db.session.add(self)
         db.session.commit()
     #delete post where id=idPost
     def deletePost(idPost):
         Post.query.filter_by(id=idPost).delete()
         db.session.commit()
     #update post
-    def updatePost(idPost,postUpdate):
+    def updatePost(self,idPost):
         post= Post.query.filter_by(id=idPost).first()
-        post.title = postUpdate.title
-        post.content = postUpdate.content
+        post.title = self.title
+        post.content = self.content
         db.session.commit()

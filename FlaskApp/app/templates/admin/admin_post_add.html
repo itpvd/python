@@ -5,16 +5,16 @@
 </div>
 <div class="container">
   <center>
-  <h1 class="form-heading">Create new post</h1>
-   {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul class=flashes>
-        {% for message in messages %}
-        <li><b>{{ message }}!</b></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
+    <h1 class="form-heading">Create new post</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li><b>{{ message }}!</b></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
   </center>
   <div class="login-form">
     <div class="main-div">

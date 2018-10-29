@@ -5,16 +5,16 @@
 </div>
 <div class="container">
   <center>
-  <h1 class="form-heading">Update Post</h1>
-   {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul class=flashes>
-        {% for message in messages %}
-        <li><b>{{ message }}!</b></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
+    <h1 class="form-heading">Update Post</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li><b>{{ message }}!</b></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
   </center>
   <div class="login-form">
     <div class="main-div">
@@ -32,7 +32,7 @@
            <input type="hidden"  name="id" value="{{post['id']}}">
            <button type="submit" class="btn btn-primary">Submit</button>
            <a href="/listPost"><button type="button" class="btn btn-danger">Cancel</button></a><br>
-        </form>
+         </form>
        </div>
      </div>
    </div>

@@ -8,15 +8,15 @@
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Profile</h3>
-           {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul class=flashes>
-        {% for message in messages %}
-        <li><b>{{ message }}!</b></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul class=flashes>
+            {% for message in messages %}
+            <li><b>{{ message }}!</b></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
         </div>
         <div class="panel-body">
           <div class="row">
@@ -42,9 +42,9 @@
                         {%else%}
                         <input type="radio" name="gender" id="option1" value="male" > male </input>
                         <input type="radio" name="gender" id="option2" value="female" checked> female </input><br>
-                       {%endif%}</td>
-                     </tr>
-                     <tr>
+                      {%endif%}</td>
+                    </tr>
+                    <tr>
                       <td>Email</td>
                       <td><input type="email" class="form-control" id="inputEmail" name="email" value="{{user['email']}}" required></td>
                     </tr>

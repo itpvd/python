@@ -5,11 +5,11 @@ from flask_mail import Mail, Message
 
 app = Flask(__name__)
 POSTGRES = {
-    'user': 'postgres',
-    'pw': '123456',
-    'db': 'flaskapp',
-    'host': 'localhost',
-    'port': '5432',
+'user': 'postgres',
+'pw': '123456',
+'db': 'flaskapp',
+'host': 'localhost',
+'port': '5432',
 }
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587

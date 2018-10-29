@@ -45,22 +45,22 @@ class User(db.Model, UserMixin):
         user = User.query.filter_by(email=mail).first()
         return user
     #create new user
-    def createUser(user):
-        db.session.add(user)
+    def createUser(self):
+        db.session.add(self)
         db.session.commit()
     #delete user where id = idUser
     def deleteUser(idUser):
         User.query.filter_by(id=idUser).delete()
         db.session.commit()
     #update user
-    def updateUser(idUser,userUpdate):
+    def updateUser(self,idUser):
         user= User.query.filter_by(id=idUser).first()
-        user.password = userUpdate.password
-        user.role = userUpdate.role
-        user.email = userUpdate.email
-        user.gender = userUpdate.gender
-        user.phone= userUpdate.phone
-        user.birthday = userUpdate.birthday
+        user.password = self.password
+        user.role = self.role
+        user.email = self.email
+        user.gender = self.gender
+        user.phone= self.phone
+        user.birthday = self.birthday
         db.session.commit()
     #function check user exists
     def userExists(name):

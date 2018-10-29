@@ -1,16 +1,16 @@
 {% extends "admin.html" %}
 {% block content %}
 <div class="panel-heading">
-   List User
+ List User
 </div>
 <div class="container">
     <div class="row col-md-6 col-md-offset-2 custyle">
         <table class="table table-striped custab">
             <thead>
                 <a href="/formAddUser" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new user</a>
-             {%if allrecord.__len__()==0%}
-             There are no user. Please add a new user!
-             {%else%}
+                {%if allRecord.__len__()==0%}
+                There are no user. Please add a new user!
+                {%else%}
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
@@ -19,7 +19,7 @@
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
-            {%for user in result.items%}
+            {%for user in listUser.items%}
             <tr>
                 <td>{{user['id']}}</td>
                 <td>{{user['username']}}</td>
@@ -30,7 +30,7 @@
             {%endfor%}
             {%endif%}
         </table>
-        {% for page_num in result.iter_pages() %}
+        {% for page_num in listUser.iter_pages() %}
         {% if page_num %}
         <a class="btn btn-outline-info mb-4" href="{{ url_for('listUser', page=page_num) }}">{{ page_num }}</a>
         {% else %}
