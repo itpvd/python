@@ -1,0 +1,40 @@
+{% extends "admin.html" %}
+{% block content %}
+<div class="panel-heading">
+ List Post
+</div>
+<div class="container">
+   <div class="row col-md-6 col-md-offset-2 custyle">
+       <table class="table table-striped custab">
+        <thead>
+            <a href="/formAddPost" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new post</a>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+</div>
+</div>
+<script type="text/javascript">
+ $.ajax({
+    type:"GET",
+    dataType: "json",
+    url: "http://127.0.0.1:5000/listPost",
+    success: function(data){
+        console.log(data);
+        if (data.status == 'listPost_successful')
+        {
+            alert('welecome to website!');
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + data.status + "</td><td>" + data.status + "</td></tr>";
+            $("table tbody").append(markup);   
+        }
+    }
+})
+</script>
+{% endblock %}

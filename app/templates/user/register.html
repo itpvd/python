@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+	{% if title %}
+  <title>{{ title }} - page</title>
+  {% else %}
+  <title>page</title>
+  {% endif %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='login.css')}}">
+</head>
+<body id="LoginForm">
+  <div class="container">
+    <h1 class="form-heading">Register Form</h1>
+    <div class="login-form">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+        {% for message in messages %}
+        <li><b>{{ message }}!</b></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      <div class="main-div">
+        <div class="panel">
+         <h2>REGISTER</h2>
+         <p>Please enter your information</p>
+       </div>
+       <form id="Register"  method="POST" action="/register">
+        <div class="form-group" >
+          <input type="text" class="form-control" id="inputText" placeholder="Username" name="username" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="confirmpass" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control"  placeholder="Email" name="email" required>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-3">
+              <label> Gender:</label>
+            </div>
+            <div class="col-6">
+              <input type="radio" name="gender" id="option1" value="male" checked> male </input>
+              <input type="radio" name="gender" id="option2" value="female"> female </input><br>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Phone number" name="phone" pattern="[0-9]{5,15}" title="Phone should only contain number, from 1 t0 15 number" required>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-3">
+              <label> Birthday: </label>
+            </div>
+          </div> 
+          <input type="date" class="form-control" name="birthday"
+          required
+          data-bv-notempty-message="The date is required">
+        </div>      
+        <div class="forgot">
+         <a href="{{url_for('formLogin')}}">Do you want login?</a>
+       </div>
+       <button type="submit" class="btn btn-primary">Resgiter</button>
+     </form>
+   </div>
+ </div>
+</div>
+<script type="text/javascript">
+  $('button').click(function(){
+    $.ajax({
+      url: "http://127.0.0.1:5000/register",
+      type:"POST",
+      dataType: "json",
+      data: $('form').serialize(),
+      success: function(data){
+        if (data.status == 'register_successful')
+        {
+          location.href = "formRegister"    
+        }
+        if (data.status == 'register_failed')
+        {
+          location.href = "formRegister"    
+        }
+        if (data.status == 'exception')
+        {
+          location.href = "listUser"    
+        }
+      }
+    })
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='admin.css')}}">
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">				
+        <a href="/viewPost"><img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" height="90" width="270"></a>	
+     </div>
+     <!-- Collect the nav links, forms, and other content for toggling -->
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+           <span class="glyphicon glyphicon-user"></span> {{current_user.username}}
+           <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">SETTINGS</li>
+            <li class=""><a href="#">Other Link</a></li>
+            <li class=""><a href="#">Other Link</a></li>
+            <li class=""><a href="#">Other Link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid main-container">
+ <div class="col-md-2 sidebar">
+  <ul class="nav nav-pills nav-stacked">
+   <li class="active"><a href="#">Home</a></li>
+   <li><a href="/listUser"> <span class="glyphicon glyphicon-user"></span> User manager</a></li>
+   <li><a href="/showListPost"><span class="glyphicon glyphicon-th-list"></span> Post manager</a></li>
+ </ul>
+</div>
+<div class="col-md-10 content">
+  <div class="panel panel-default">
+   {% block content %}{% endblock %}
+ </div>
+</div>
+<footer class="pull-left footer">				
+</footer>
+</div> 
+</body>
+</html>

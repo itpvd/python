@@ -1,0 +1,25 @@
+h1.page-header {
+    margin-top: -5px;
+}
+.sidebar {
+    padding-left: 0;
+}
+.main-container { 
+    background: #FFF;
+    padding-top: 15px;
+    margin-top: -20px;
+}
+.footer {
+    width: 100%;
+}  
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}

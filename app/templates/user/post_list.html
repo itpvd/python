@@ -1,0 +1,74 @@
+{% extends "user.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <div id="sidebar">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+          <h1>Python For Beginners</h1>
+          <p>Welcome! Are you completely new to programming? If not then we presume you will be looking for information about why and how to get started with Python. Fortunately an experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It's also easy for beginners to use and learn, so jump in!</p>
+          <center><p><a href="https://www.w3schools.com/python/"><img src="https://cdn-images-1.medium.com/max/1600/1*7EUX9QIjq2x1JyFKcjhXsA.png"></a></p></center>
+          <h1>Installing</h1>
+          <p>Welcome to my blog!</p>
+          <p>Installing Python is generally easy, and nowadays many Linux and UNIX distributions include a recent Python. Even some Windows computers (notably those from HP) now come with Python already installed. If you do need to install Python and aren't confident about the task you can find a few notes on the <a href="https://wiki.python.org/moin/BeginnersGuide/Download">BeginnersGuide/Download</a> wiki page, but installation is unremarkable on most platforms.</p>
+          <p>Thank you for visiting!</p>        
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {%for post in listPost.items%}
+      <div class="row">
+        <div class="span8">
+          <div class="row">
+            <div class="span8">
+              <h4><strong><a href="#">{{post['title']}}</a></strong></h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span2">
+              <a href="/detailPost?id={{post['id']}}" class="thumbnail">
+                <img src="http://placekitten.com/150/150" width="100" height="150">
+              </a>
+            </div>
+            <div class="span6">      
+              <p>
+                {{post['content']}}
+              </p>
+              <p><a class="btn" href="/detailPost?id={{post['id']}}">Read more</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span8">
+              <p></p>
+              <p>
+                <i class="icon-user"></i> by <a href="#">Admin</a> 
+                | <i class="icon-calendar"></i> {{post['date_posted'].strftime("%c")}}
+                | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                | <i class="icon-share"></i> <a href="#">39 Shares</a>
+                | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+                <a href="#"><span class="label label-info">Bootstrap</span></a> 
+                <a href="#"><span class="label label-info">UI</span></a> 
+                <a href="#"><span class="label label-info">growth</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      {%endfor%}
+    </div>
+  </div>
+  <center>
+    {% for page_num in listPost.iter_pages() %}
+    {% if page_num %}
+    <a class="btn btn-outline-info mb-4" href="{{ url_for('viewPost', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+  </center>
+  {%endblock%}

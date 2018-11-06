@@ -1,0 +1,68 @@
+{% extends "user.html" %}
+{%block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Profile</h3>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul class=flashes>
+            {% for message in messages %}
+            <li><b>{{ message }}!</b></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="img-circle img-responsive"> </div>
+            <div class=" col-md-9 col-lg-9 "> 
+              <form method="POST" action="/changeProfile">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Username:</td>
+                      <td><input type="text" disabled="true" class="form-control" id="inputEmail" name="username" value="{{user['username']}}" required></td>
+                    </tr>
+                    <tr>
+                      <td>Date of Birth</td>
+                      <td><input type="date" class="form-control" id="inputEmail" name="birthday" value="{{user['birthday'].strftime('%Y-%m-%d')}}" required></td>
+                    </tr>
+                    <tr>
+                     <tr>
+                      <td>Gender</td>
+                      <td> {%if user['gender']=='male'%}
+                        <input type="radio" name="gender" id="option1" value="male" checked> male </input>
+                        <input type="radio" name="gender" id="option2" value="female"> female </input><br>
+                        {%else%}
+                        <input type="radio" name="gender" id="option1" value="male" > male </input>
+                        <input type="radio" name="gender" id="option2" value="female" checked> female </input><br>
+                      {%endif%}</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><input type="email" class="form-control" id="inputEmail" name="email" value="{{user['email']}}" required></td>
+                    </tr>
+                    <td>Phone Number</td>
+                    <td><input type="text" class="form-control" id="inputEmail" name="phone" value="{{user['phone']}}" pattern="[0-9]{5,15}" title="Phone should only contain number, from 1 t0 15 number" required></td>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

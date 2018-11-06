@@ -1,0 +1,64 @@
+{% extends "admin.html" %}
+{%block content%}
+<div class="panel-heading">
+ Add Post
+</div>
+<div class="container">
+  <center>
+    <h1 class="form-heading">Create new post</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li><b>{{ message }}!</b></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </center>
+  <div class="login-form">
+    <div class="main-div">
+      <div class="panel">
+        <form method="POST" action="/addPost">
+          <div class="form-group" >
+            <label >Title:</label>
+            <input type="text" class="form-control" placeholder="Title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label >Content:</label>
+            <textarea class="form-control" rows="5" id="comment" name='content' required></textarea>
+          </div>
+          <center>
+           <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+           <a href="/listPost"><button type="button" class="btn btn-danger">Cancel</button></a><br>
+         </center>
+       </form>
+     </div>
+   </div>
+ </div>
+</div>
+<script type="text/javascript">
+        $("#submit").click(function(){
+            $.ajax({
+                url: "http://127.0.0.1:5000/addPost",
+                type:"POST",
+                dataType: "json",
+                data: $('form').serialize(),
+                success: function(data){
+                    if (data.status == 'not_authenticated')
+                        {
+                            location.href = "formLogin"    
+                        }
+                        if (data.status == 'add_post_successful')
+                        {
+                            location.href = "formAddPost"    
+                        }
+                        if (data.status == 'exception')
+                        {
+                            location.href = "error"    
+                        }
+                }
+            })
+        });
+    </script>
+{% endblock %}

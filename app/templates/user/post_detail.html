@@ -1,0 +1,46 @@
+{% extends "user.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <div id="sidebar">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+          <h1>Python For Beginners</h1>
+          <p>Welcome! Are you completely new to programming? If not then we presume you will be looking for information about why and how to get started with Python. Fortunately an experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It's also easy for beginners to use and learn, so jump in!</p>
+          <center><p><a href="https://www.w3schools.com/python/"><img src="https://cdn-images-1.medium.com/max/1600/1*7EUX9QIjq2x1JyFKcjhXsA.png"></a></p></center>
+          <h1>Installing</h1>
+          <p>Welcome to my blog!</p>
+          <p>Installing Python is generally easy, and nowadays many Linux and UNIX distributions include a recent Python. Even some Windows computers (notably those from HP) now come with Python already installed. If you do need to install Python and aren't confident about the task you can find a few notes on the <a href="https://wiki.python.org/moin/BeginnersGuide/Download">BeginnersGuide/Download</a> wiki page, but installation is unremarkable on most platforms.</p>
+          <p>Thank you for visiting!</p>        
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+     <!-- Container (The Band Section) -->
+     <div class="well">
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">{{post['title']}}</h4>
+          <p class="text-right">By Admin</p>
+          <p>{{post['content']}}</p>
+          <ul class="list-inline list-unstyled">
+           <li><span><i class="glyphicon glyphicon-calendar"></i> {{post['date_posted']}} </span></li>
+           <li>|</li>
+           <li>|</li>
+           <li>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+          </li>
+          <li>|</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{%endblock%}
